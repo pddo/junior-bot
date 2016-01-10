@@ -16,6 +16,10 @@ post '/gateway' do
   end
 end
 
+get '/' do
+  'Hello! Welcome to Simple Slackbot'
+end
+
 def respond_message(message)
   content_type :json
   { text: message }.to_json
