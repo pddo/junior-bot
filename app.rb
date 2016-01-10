@@ -6,6 +6,7 @@ post '/gateway' do
   puts 'PhucDDDDDDD'
   p params
   p params[:text]
+  return if params[:token] != ENV['SLACK_TOKEN']
   message = params[:text].gsub(params[:trigger_word], '').strip
 
   action, repo = message.split('_').map { |c| c.strip.downcase }
