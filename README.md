@@ -1,4 +1,4 @@
-# A Simple Slackbot
+# Junior Slackbot
 
 The repo is for personal experiment only.
 
@@ -29,3 +29,28 @@ Ex:
 
 Then should include this keyword: `Reminder: [bot keyword]` alongs with main bot keyword to outgoing WebHooks of Slack.  
 Ex: `Reminder: junior`
+
+## Lunch Command
+
+- Show help: `#lunch`
+
+- Show menu: `#lunch menu`
+  Show list of dishes which has format as:
+
+```
+1. Com dat ngoai
+2. My xao bo
+3. Bittet
+4. Hu tieu
+```
+
+- Order a dish: `#luch order 3`
+  Order `bittet` for calling user
+
+- Cancel an order: `#luch cancel`
+  Cancel any orderred dish of calling user
+
+- Send mail to make order: `#lunch send request`
+
+- Cancel all: `#luch clear`
+  This command only effects for configurated users
