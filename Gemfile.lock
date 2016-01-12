@@ -5,10 +5,13 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.3)
+    minitest (5.8.3)
     multi_xml (0.5.5)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -20,7 +23,9 @@ PLATFORMS
 
 DEPENDENCIES
   httparty
-  sinatra
+  minitest
+  rack-test
+  sinatra (= 1.4.6)
 
 BUNDLED WITH
    1.11.2

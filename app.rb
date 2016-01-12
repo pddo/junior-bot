@@ -21,7 +21,7 @@ post '/gateway' do
 end
 
 get '/' do
-  'Hello! Welcome to Simple Slackbot'
+  'Hello! Welcome to Junior Slackbot'
 end
 
 def respond_message(message)
