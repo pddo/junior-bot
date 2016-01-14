@@ -27,5 +27,12 @@ describe 'Junior Bot' do
     params['text'] = '#lunch menu'
     post '/gateway', params
     puts last_response.body
+    last_response.body.must_match(/Today menu:/)
+  end
+
+  it 'should order dish successfully' do
+    params['text'] = '#lunch order 1'
+    post '/gateway', params
+    puts last_response.body
   end
 end
