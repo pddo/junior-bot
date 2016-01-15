@@ -1,8 +1,9 @@
 ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'rack/test'
+require 'pry'
 
-require File.expand_path '../app.rb', __FILE__
+require File.expand_path '../config/environment.rb', __FILE__
 include Rack::Test::Methods
 
 def app

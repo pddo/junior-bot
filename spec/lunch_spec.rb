@@ -4,7 +4,7 @@ describe 'Junior Bot' do
 
   let(:params) do
     {
-      "token"=>"l0L3Aw36M2OoaEmhes2X7MHm",
+      "token"=>ENV['SLACK_TOKEN'],
       "team_id"=>"T02K8KA7N",
       "team_domain"=>"msss",
       "service_id"=>"18141234355",
@@ -31,8 +31,12 @@ describe 'Junior Bot' do
   end
 
   it 'should order dish successfully' do
-    params['text'] = '#lunch order 1'
+    dish_idx = 0
+    params['text'] = "#lunch order #{dish_idx + 1}"
     post '/gateway', params
-    puts last_response.body
+    last_response.body.must_match(/Noted:/)
+    Order.today.where(user: params['user_name']).count.must_equal 1
+    order = Order.today.where(user: params['user_name']).first
+    order.dish.must_equal Dish.today_dishes[dish_idx]
   end
 end
