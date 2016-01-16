@@ -57,7 +57,14 @@ describe 'Junior Bot' do
   end
 
   it 'should send mail successfully' do
-    Pony.mail(to: 'phucdd@elarion.com')
-  end
+    dish_idx = 0
+    dish = Dish.today_dishes[dish_idx]
+    user = @user
+    Order.add_today_request(user, dish)
 
+    params['text'] = '#lunch send'
+    post '/gateway', params
+    last_response.ok?.must_equal true
+    last_response.body.must_match(/Lunch requestes have been sent!/)
+  end
 end

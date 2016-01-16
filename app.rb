@@ -1,5 +1,8 @@
 post '/gateway' do
-  return if params[:token] != ENV['SLACK_TOKEN']
+  if params[:token] != AUTH_TOKEN
+    responde_message('You are not authorized!')
+    return
+  end
 
   @trigger_word = params[:trigger_word]
   message = params[:text].gsub(@trigger_word, '').strip
@@ -14,7 +17,7 @@ post '/gateway' do
   when 'cancel'
     cancel
   when 'send'
-    send
+    send_requests
   when 'clear'
     clear
   else
@@ -55,12 +58,25 @@ def cancel
   respond_message "Canceled order of @#{@user}"
 end
 
-# def send
-#   #mail(Order.today_requests)
-# end
+def send_requests
+  orders = Order.today_requests
+  if orders.count.zero?
+    msg = "No request today!"
+  else
+    mailer = LunchMailer.new(orders)
+    mailer.send
+    msg = mailer.formatted_content +
+      "\n Lunch requestes have been sent!"
+  end
+  respond_message(msg)
+end
 
 def clear
   Order.clear_today_requests
+end
+
+def show_help
+  "Help messages"
 end
 
 def respond_message(message)

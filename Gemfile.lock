@@ -7,15 +7,10 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.3)
-    mail (2.6.3)
-      mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.99)
     minitest (5.8.3)
     multi_xml (0.5.5)
     pg (0.18.4)
-    pony (1.11)
-      mail (>= 2.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -41,7 +36,6 @@ DEPENDENCIES
   httparty
   minitest
   pg
-  pony
   pry
   rack-test
   sequel
