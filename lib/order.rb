@@ -11,4 +11,12 @@ class Order < Sequel::Model
     order.dish = dish
     order.save
   end
+
+  def self.cancel_today_request(user)
+    today.where(user: user).delete
+  end
+
+  def self.clear_today_requests
+    today.delete
+  end
 end

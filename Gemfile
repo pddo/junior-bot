@@ -7,6 +7,7 @@ gem 'httparty'
 gem 'pg'
 gem 'sequel'
 gem 'dotenv'
+gem 'pony'
 
 group :development, :test do
   gem 'minitest'

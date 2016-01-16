@@ -51,7 +51,8 @@ def order(dish_num)
 end
 
 def cancel
-  #Order.cancel_today_request(@user)
+  Order.cancel_today_request(@user)
+  respond_message "Canceled order of @#{@user}"
 end
 
 # def send
@@ -59,7 +60,7 @@ end
 # end
 
 def clear
-  #Order.clear_today_requests
+  Order.clear_today_requests
 end
 
 def respond_message(message)
