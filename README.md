@@ -17,6 +17,9 @@ curl --data-urlencode 'text=issues_pddo/junior-bot' \
 https://junior-bot.herokuapp.com/gateway
 ```
 
+- Install [Heroku toolbelt](https://toolbelt.heroku.com/)
+
+
 ## Create a scheduler by `/remind` command of Slack
 
 Syntax to create reminder: 

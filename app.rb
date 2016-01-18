@@ -44,7 +44,7 @@ def show_today_menu
 
   msg = "Today menu:\n" +
     fdishes.join("\n") +
-    "\nOrder meal by command: `#{@trigger_word} order <menu #>`"
+    "\nOrder dish by command: `#{@trigger_word} order <menu #>`"
 
   respond_message(msg)
 end
@@ -74,7 +74,7 @@ def send_orders
     mailer = LunchMailer.new(orders)
     mailer.send
     msg = mailer.formatted_content +
-          '\n Lunch requestes have been sent!'
+          "\n Lunch requestes have been sent!"
 
     Order.clear_today_requests
   end
@@ -88,11 +88,11 @@ end
 
 def show_help
   respond_message "Following are valid #{@trigger_word} commands :" \
-    "\n- #{@trigger_word} menu: show today menu" \
-    "\n- #{@trigger_word} order <number>: order dish at number in menu list" \
-    "\n- #{@trigger_word} cancel: cancel order that you made today" \
-    "\n- #{@trigger_word} clear: cancel all today orders (Please do not call it for fun!!! ^^!)" \
-    "\n- #{@trigger_word} send: send order email (It's been scheduled please do not call it)"
+    "\n- `#{@trigger_word} menu`: show today menu" \
+    "\n- `#{@trigger_word} order` <number>: order dish at number in menu list" \
+    "\n- `#{@trigger_word} cancel`: cancel order that you made today" \
+    "\n- `#{@trigger_word} clear`: cancel all today orders (Please do not call it for fun!!! ^^!)" \
+    "\n- `#{@trigger_word} send`: send order email (It's been scheduled please do not call it)"
 end
 
 def respond_message(msg)
