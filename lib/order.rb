@@ -23,4 +23,9 @@ class Order < Sequel::Model
   def self.clear_today_requests
     today.delete
   end
+
+  def self.over_lunch_deadline?
+    deadline = Time.parse(LUNCH_ORDER_DEADLINE)
+    Time.now > deadline
+  end
 end

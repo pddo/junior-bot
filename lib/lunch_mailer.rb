@@ -11,7 +11,7 @@ class LunchMailer
 
     <<-CONTENT
 From: McKI Team <#{ADMIN_EMAIL}>
-To: Admin <#{LUNCH_REQUEST_EMAIL}>
+To: Admin <#{LUNCH_ORDER_EMAIL}>
 Subject: McKI đăng Ký Món Ăn Ngoài
 
 Hi Admin,
@@ -27,7 +27,7 @@ McKI Team
 
   def send
     Net::SMTP.start(*SMTP_AUTH) do |smtp|
-      smtp.send_message formatted_content, ADMIN_EMAIL, LUNCH_REQUEST_EMAIL
+      smtp.send_message formatted_content, ADMIN_EMAIL, LUNCH_ORDER_EMAIL
     end
   end
 end

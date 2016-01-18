@@ -5,28 +5,36 @@ post '/gateway' do
   end
 
   @trigger_word = params[:trigger_word]
-  message = params[:text].gsub(@trigger_word, '').strip
+  @message = params[:text].gsub(@trigger_word, '').strip
   @user = params['user_name']
 
-  case message
-  when 'menu'
-    show_today_menu
-  when /^order \d+$/
-    m = message.match(/^order (\d+)/)
-    order(m[1])
-  when 'cancel'
-    cancel
-  when 'send'
-    send_requests
-  when 'clear'
-    clear
+  if Order.over_lunch_deadline?
+    respond_message('Lunch order is out of service!')
   else
-    show_help
+    do_lunch_actions
   end
 end
 
 get '/' do
   'Hello! Welcome to Junior Slackbot'
+end
+
+def do_lunch_actions
+  case @message
+  when 'menu'
+    show_today_menu
+  when /^order \d+$/
+    m = @message.match(/^order (\d+)/)
+    order(m[1])
+  when 'cancel'
+    cancel_orders
+  when 'send'
+    send_orders
+  when 'clear'
+    clear_orders
+  else
+    show_help
+  end
 end
 
 def show_today_menu
@@ -53,33 +61,41 @@ def order(dish_num)
   respond_message(msg)
 end
 
-def cancel
+def cancel_orders
   Order.cancel_today_request(@user)
   respond_message "Canceled order of @#{@user}"
 end
 
-def send_requests
+def send_orders
   orders = Order.today_requests
   if orders.count.zero?
-    msg = "No request today!"
+    msg = 'No request today!'
   else
     mailer = LunchMailer.new(orders)
     mailer.send
     msg = mailer.formatted_content +
-      "\n Lunch requestes have been sent!"
+          '\n Lunch requestes have been sent!'
+
+    Order.clear_today_requests
   end
   respond_message(msg)
 end
 
-def clear
+def clear_orders
   Order.clear_today_requests
+  respond_message('All today orders have been canceled!')
 end
 
 def show_help
-  "Help messages"
+  respond_message "Following are valid #{@trigger_word} commands :" \
+    "\n- #{@trigger_word} menu: show today menu" \
+    "\n- #{@trigger_word} order <number>: order dish at number in menu list" \
+    "\n- #{@trigger_word} cancel: cancel order that you made today" \
+    "\n- #{@trigger_word} clear: cancel all today orders (Please do not call it for fun!!! ^^!)" \
+    "\n- #{@trigger_word} send: send order email (It's been scheduled please do not call it)"
 end
 
-def respond_message(message)
+def respond_message(msg)
   content_type :json
-  { text: message }.to_json
+  { text: msg }.to_json
 end
