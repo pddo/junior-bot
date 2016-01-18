@@ -9,13 +9,7 @@ describe 'Lunch Order' do
   let(:params) do
     {
       'token' => ENV['SLACK_TOKEN'],
-      'team_id' => 'T02K8KA7N',
-      'team_domain' => 'msss',
-      'service_id' => '18141234355',
-      'channel_id' => 'C02K8KA7Y',
       'channel_name' => 'general',
-      'timestamp' => '1452788559.000002',
-      'user_id' => 'U02K92U3E',
       'user_name' => @user,
       'text' => '#lunch menu',
       'trigger_word' => '#lunch'
