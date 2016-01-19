@@ -1,7 +1,6 @@
 post '/gateway' do
   if params[:token] != AUTH_TOKEN
-    respond_message('You are not authorized!')
-    return
+    return respond_message('You are not authorized!')
   end
 
   @trigger_word = params[:trigger_word]
