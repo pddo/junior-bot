@@ -28,14 +28,15 @@ Syntax to create reminder:
 
 Ex: 
 
-    /remind #general to junior issues_pddo/junior-bot at 11:38pm every Sunday
+    /remind #tech24 #lunch send at 10:25 AM every weekday
+    /remind #tech24 #lunch menu at 09:00 AM every weekday
 
 Then should include this keyword: `Reminder: [bot keyword]` alongs with main bot keyword to outgoing WebHooks of Slack.  
 Ex: `Reminder: junior`
 
 ## Lunch Command
 
-- Show help: `#lunch`
+- Show help: `#lunch <whatever>`
 
 - Show menu: `#lunch menu`
   Show list of dishes which has format as:
@@ -43,7 +44,7 @@ Ex: `Reminder: junior`
 ```
 1. Com dat ngoai
 2. My xao bo
-3. Bittet
+3. Beefsteak
 4. Hu tieu
 ```
 
