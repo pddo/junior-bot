@@ -20,14 +20,14 @@ end
 
 def do_lunch_actions
   case @message
-  when 'menu'
+  when /menu/
     show_today_menu
   when /^order \d+$/
     m = @message.match(/^order (\d+)/)
     order(m[1])
   when 'cancel'
     cancel_orders
-  when 'send', 'send.'
+  when /send/
     send_orders
   when 'clear'
     clear_orders

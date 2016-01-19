@@ -104,7 +104,7 @@ describe 'Lunch Order' do
       params['text'] = '#lunch send'
       post '/gateway', params
       last_response.ok?.must_equal true
-      last_response.body.must_match(/Lunch requestes have been sent!/)
+      last_response.body.must_match(/Lunch orders have been sent!/)
     end
 
     it 'should send mail successfully version 2' do
@@ -116,7 +116,7 @@ describe 'Lunch Order' do
       params['text'] = '#lunch send.'
       post '/gateway', params
       last_response.ok?.must_equal true
-      last_response.body.must_match(/Lunch requestes have been sent!/)
+      last_response.body.must_match(/Lunch orders have been sent!/)
     end
   end
 end
