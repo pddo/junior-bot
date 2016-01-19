@@ -42,9 +42,13 @@ def show_today_menu
     "#{idx + 1}. #{dish}"
   end
 
-  msg = "Today menu:\n" +
-    fdishes.join("\n") +
-    "\nOrder dish by command: `#{@trigger_word} order <menu #>`"
+  if fdishes.empty?
+    msg = 'Lunch order is out of service!'
+  else
+    msg = "Today menu:\n" +
+          fdishes.join("\n") +
+          "\nOrder dish by command: `#{@trigger_word} order <menu #>`"
+  end
 
   respond_message(msg)
 end

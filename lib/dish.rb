@@ -3,6 +3,6 @@ class Dish
 
   def self.today_dishes
     wday = Time.now.strftime('%A')
-    DAILY_MENU[wday]
+    (DAILY_MENU[wday] || []).flatten
   end
 end
