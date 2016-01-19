@@ -106,5 +106,17 @@ describe 'Lunch Order' do
       last_response.ok?.must_equal true
       last_response.body.must_match(/Lunch requestes have been sent!/)
     end
+
+    it 'should send mail successfully version 2' do
+      dish_idx = 0
+      dish = Dish.today_dishes[dish_idx]
+      user = @user
+      Order.add_today_request(user, dish)
+
+      params['text'] = '#lunch send.'
+      post '/gateway', params
+      last_response.ok?.must_equal true
+      last_response.body.must_match(/Lunch requestes have been sent!/)
+    end
   end
 end

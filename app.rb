@@ -28,7 +28,7 @@ def do_lunch_actions
     order(m[1])
   when 'cancel'
     cancel_orders
-  when 'send'
+  when 'send', 'send.'
     send_orders
   when 'clear'
     clear_orders
