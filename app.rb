@@ -92,10 +92,11 @@ end
 def show_help
   respond_message "Following are valid #{@trigger_word} commands :" \
     "\n- `#{@trigger_word} menu`: show today menu" \
-    "\n- `#{@trigger_word} order` <number>: order dish at number in menu list" \
+    "\n- `#{@trigger_word} order <number>`: order dish at number in menu list" \
     "\n- `#{@trigger_word} cancel`: cancel order that you made today" \
     "\n- `#{@trigger_word} clear`: cancel all today orders (Please do not call it for fun!!! ^^!)" \
-    "\n- `#{@trigger_word} send`: send order email (It's been scheduled please do not call it)"
+    "\n- `#{@trigger_word} send`: send order email (It's been scheduled please do not call it)" \
+    "\n **NOTE**: these commands only available on public channels"
 end
 
 def respond_message(msg)
