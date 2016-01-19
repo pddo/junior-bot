@@ -1,6 +1,6 @@
 post '/gateway' do
   if params[:token] != AUTH_TOKEN
-    responde_message('You are not authorized!')
+    respond_message('You are not authorized!')
     return
   end
 
@@ -78,7 +78,7 @@ def send_orders
     mailer = LunchMailer.new(orders)
     mailer.send
     msg = mailer.formatted_content +
-          "\n Lunch requestes have been sent!"
+          "\n Lunch orders have been sent!"
 
     Order.clear_today_requests
   end
