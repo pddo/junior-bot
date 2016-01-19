@@ -12,7 +12,7 @@ class LunchMailer
     <<-CONTENT
 From: McKI Team <#{ADMIN_EMAIL}>
 To: Admin <#{LUNCH_ORDER_EMAIL}>
-Subject: McKI đăng Ký Món Ăn Ngoài
+Subject: McKI Đăng Ký Món Ăn Ngoài
 
 Hi Admin,
 
