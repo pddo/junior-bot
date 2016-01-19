@@ -96,7 +96,7 @@ def show_help
     "\n- `#{@trigger_word} cancel`: cancel order that you made today" \
     "\n- `#{@trigger_word} clear`: cancel all today orders (Please do not call it for fun!!! ^^!)" \
     "\n- `#{@trigger_word} send`: send order email (It's been scheduled please do not call it)" \
-    "\n **NOTE**: these commands only available on public channels"
+    "\n **NOTE**: these commands are only available on public channels"
 end
 
 def respond_message(msg)
