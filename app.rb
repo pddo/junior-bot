@@ -8,7 +8,7 @@ post '/gateway' do
   @user = params['user_name']
 
   if Order.over_lunch_deadline?
-    respond_message('Lunch order is out of service!')
+    respond_message('Lunch order is out of service, please comeback tomorrow!')
   else
     do_lunch_actions
   end
@@ -42,7 +42,7 @@ def show_today_menu
   end
 
   if fdishes.empty?
-    msg = 'No dishes for order today!'
+    msg = 'No dish for ordering today, please comeback tomorrow! :P'
   else
     msg = "Today menu:\n" +
           fdishes.join("\n") +
