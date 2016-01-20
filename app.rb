@@ -4,7 +4,7 @@ post '/gateway' do
   end
 
   @trigger_word = params[:trigger_word]
-  @message = params[:text].gsub(@trigger_word, '').strip
+  @message = params[:text].gsub(@trigger_word, '').strip.downcase
   @user = params['user_name']
 
   if Order.over_lunch_deadline?
@@ -20,14 +20,14 @@ end
 
 def do_lunch_actions
   case @message
-  when /menu/
+  when /^menu(\.)?$/
     show_today_menu
   when /^order \d+$/
     m = @message.match(/^order (\d+)/)
     order(m[1])
   when 'cancel'
     cancel_orders
-  when /send/
+  when /^send(\.)?$/
     send_orders
   when 'clear'
     clear_orders
@@ -42,7 +42,7 @@ def show_today_menu
   end
 
   if fdishes.empty?
-    msg = 'No dish for ordering today, please comeback tomorrow! :P'
+    msg = 'No menu for ordering today, please comeback tomorrow! :P'
   else
     msg = "Today menu:\n" +
           fdishes.join("\n") +

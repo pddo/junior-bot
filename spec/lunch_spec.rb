@@ -55,6 +55,18 @@ describe 'Lunch Order' do
       last_response.body.must_match(/Today menu:/)
     end
 
+    it 'should return today menu 2' do
+      params['text'] = '#lunch MENU.'
+      post '/gateway', params
+      last_response.body.must_match(/Today menu:/)
+    end
+
+    it 'should not return today menu' do
+      params['text'] = '#lunch MENUa'
+      post '/gateway', params
+      last_response.body.wont_match(/Today menu:/)
+    end
+
     it 'should order dish successfully' do
       dish_idx = 0
       params['text'] = "#lunch order #{dish_idx + 1}"
@@ -115,11 +127,25 @@ describe 'Lunch Order' do
       Order.add_today_request(@user, dish)
 
       LunchMailer.stub_any_instance(:send, true) do
-        params['text'] = '#lunch send.'
+        params['text'] = '#lunch SEND.'
         post '/gateway', params
 
         last_response.ok?.must_equal true
         last_response.body.must_match(/Lunch orders have been sent!/)
+      end
+    end
+
+    it 'should not send mail with wrong send command' do
+      dish_idx = 0
+      dish = Dish.today_dishes[dish_idx]
+      Order.add_today_request(@user, dish)
+
+      LunchMailer.stub_any_instance(:send, true) do
+        params['text'] = '#lunch send abc'
+        post '/gateway', params
+
+        last_response.ok?.must_equal true
+        last_response.body.wont_match(/Lunch orders have been sent!/)
       end
     end
   end
