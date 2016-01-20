@@ -10,6 +10,7 @@ gem 'dotenv'
 
 group :development, :test do
   gem 'minitest'
+  gem 'minitest-stub_any_instance'
   gem 'rack-test'
   gem 'pry'
 end

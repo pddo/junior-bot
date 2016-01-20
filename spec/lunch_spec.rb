@@ -31,14 +31,14 @@ describe 'Lunch Order' do
     it 'should not return today menu' do
       params['text'] = '#lunch menu'
       post '/gateway', params
-      last_response.body.must_match(/Lunch order is out of service!/)
+      last_response.body.must_match(/Lunch order is out of service/)
     end
 
     it 'should not order dish' do
       dish_idx = 0
       params['text'] = "#lunch order #{dish_idx + 1}"
       post '/gateway', params
-      last_response.body.must_match(/Lunch order is out of service!/)
+      last_response.body.must_match(/Lunch order is out of service/)
     end
   end
 
@@ -98,25 +98,29 @@ describe 'Lunch Order' do
     it 'should send mail successfully' do
       dish_idx = 0
       dish = Dish.today_dishes[dish_idx]
-      user = @user
-      Order.add_today_request(user, dish)
+      Order.add_today_request(@user, dish)
 
-      params['text'] = '#lunch send'
-      post '/gateway', params
-      last_response.ok?.must_equal true
-      last_response.body.must_match(/Lunch orders have been sent!/)
+      LunchMailer.stub_any_instance(:send, true) do
+        params['text'] = '#lunch send'
+        post '/gateway', params
+
+        last_response.ok?.must_equal true
+        last_response.body.must_match(/Lunch orders have been sent!/)
+      end
     end
 
     it 'should send mail successfully version 2' do
       dish_idx = 0
       dish = Dish.today_dishes[dish_idx]
-      user = @user
-      Order.add_today_request(user, dish)
+      Order.add_today_request(@user, dish)
 
-      params['text'] = '#lunch send.'
-      post '/gateway', params
-      last_response.ok?.must_equal true
-      last_response.body.must_match(/Lunch orders have been sent!/)
+      LunchMailer.stub_any_instance(:send, true) do
+        params['text'] = '#lunch send.'
+        post '/gateway', params
+
+        last_response.ok?.must_equal true
+        last_response.body.must_match(/Lunch orders have been sent!/)
+      end
     end
   end
 end

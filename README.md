@@ -28,7 +28,7 @@ Syntax to create reminder:
 
 Ex: 
 
-    /remind #tech24 #lunch send at 10:25 AM every weekday
+    /remind #tech24 #lunch send at 10:20 AM every weekday
     /remind #tech24 #lunch menu at 09:00 AM every weekday
 
 Then should include this keyword: `Reminder: [bot keyword]` alongs with main bot keyword to outgoing WebHooks of Slack.  
