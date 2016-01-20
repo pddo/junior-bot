@@ -1,6 +1,6 @@
 # Junior Slackbot
 
-The repo is for personal experiment only.
+The repo is personal experiment only.
 
 ## Deployment
 
@@ -8,7 +8,7 @@ This bot is builded based on Sinatra and HTTParty by following [this guide](http
 
 Deployed to Heroku: `https://junior-bot.herokuapp.com`
 
-Test command:
+Test command with cURL:
 
 ```
 curl --data-urlencode 'text=issues_pddo/junior-bot' \
@@ -20,7 +20,7 @@ https://junior-bot.herokuapp.com/gateway
 - Install [Heroku toolbelt](https://toolbelt.heroku.com/)
 
 
-## Create a scheduler by `/remind` command of Slack
+## Create scheduler by `/remind` command of Slack
 
 Syntax to create reminder: 
 
@@ -48,13 +48,13 @@ Ex: `Reminder: junior`
 4. Hu tieu
 ```
 
-- Order a dish: `#luch order 3`
-  Order `bittet` for calling user
+- Order a dish: `#luch order 3`:
+  Order `Beefsteak` for calling user
 
-- Cancel an order: `#luch cancel`
+- Cancel an order: `#luch cancel`:
   Cancel any orderred dish of calling user
 
-- Send mail to make order: `#lunch send request`
+- Send mail to make order: `#lunch send`
 
-- Cancel all: `#luch clear`
+- Cancel all: `#luch clear`: 
   This command only effects for configurated users
