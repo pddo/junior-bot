@@ -25,6 +25,9 @@ class Order < Sequel::Model
   end
 
   def self.over_lunch_deadline?
+    puts "TIME DEADLINE"
+    puts "NOW: #{Time.now}"
+    puts "DEADLINE: #{Time.parse(LUNCH_ORDER_DEADLINE)}"
     deadline = Time.parse(LUNCH_ORDER_DEADLINE)
     Time.now > deadline
   end
