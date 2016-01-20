@@ -42,7 +42,7 @@ def show_today_menu
   end
 
   if fdishes.empty?
-    msg = 'Lunch order is out of service!'
+    msg = 'No dishes for order today!'
   else
     msg = "Today menu:\n" +
           fdishes.join("\n") +
