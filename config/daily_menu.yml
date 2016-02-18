@@ -4,6 +4,7 @@ default: &DEFAULT
   - cơm chiên
   - mỳ xào bò
   - beefsteak
+  - mỳ gói nước thịt bò
 
 Monday:
   - *DEFAULT
